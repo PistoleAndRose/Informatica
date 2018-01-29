@@ -42,8 +42,7 @@ public class Auto {
         longitudine =(float) (11.88 + Math.random() * (12.38 - 11.88));
         return latitudine;
     }
-    
-
+   
     public int[] generaData() {
         Date lol = new Date();
         int giorno = lol.getDay();
@@ -74,7 +73,19 @@ public class Auto {
     public void setData(int[] data) {
         this.data = data;
     }
-
+	public byte[] toByte(){
+		String id=this.name.concat("~");
+		String lat=String.valueOf(latitudine).concat("~");
+		String lon=String.valueOf(longitudine).concat("~");
+		String day=String.valueOf(data[0]).concat("~");
+		String month=String.valueOf(data[1]).concat("~");
+		String year=String.valueOf(data[2]).concat("~");
+		String second=String.valueOf(data[0]).concat("~");
+		String minute=String.valueOf(data[1]).concat("~");
+		String hours=String.valueOf(data[2]).concat("~");
+		String out=""+id+lat+lon+day+month+year+hours+minute+second;
+		return out.getBytes();
+	}
     /*
     public byte[] toByte() {
         this.name = name.concat("~");
