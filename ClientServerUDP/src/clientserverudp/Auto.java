@@ -32,6 +32,9 @@ public class Auto {
     public Auto(String name) {
         this.name = name;
     }
+	
+	public Auto(){
+	}
 
     public float generaLatitudine() {
 		latitudine=(float) (45.05 + Math.random() * (45.65 - 45.05));
@@ -80,11 +83,26 @@ public class Auto {
 		String day=String.valueOf(data[0]).concat("~");
 		String month=String.valueOf(data[1]).concat("~");
 		String year=String.valueOf(data[2]).concat("~");
-		String second=String.valueOf(data[0]).concat("~");
-		String minute=String.valueOf(data[1]).concat("~");
-		String hours=String.valueOf(data[2]).concat("~");
+		String second=String.valueOf(ora[0]).concat("~");
+		String minute=String.valueOf(ora[1]).concat("~");
+		String hours=String.valueOf(ora[2]).concat("~");
 		String out=""+id+lat+lon+day+month+year+hours+minute+second;
 		return out.getBytes();
+	}
+	public Auto toAuto(byte[] dati){
+		Auto out=new Auto();
+		String d=Arrays.toString(dati);
+		String[] s=d.split("~");
+		out.name=s[0];
+		out.latitudine=Float.parseFloat(s[1]);
+		out.longitudine=Float.parseFloat(s[2]);
+		out.data[0]=Integer.parseInt(s[3]);
+		out.data[1]=Integer.parseInt(s[4]);
+		out.data[2]=Integer.parseInt(s[5]);
+		out.ora[0]=Integer.parseInt(s[6]);
+		out.ora[1]=Integer.parseInt(s[7]);
+		out.ora[2]=Integer.parseInt(s[8]);
+		return out;
 	}
     /*
     public byte[] toByte() {
