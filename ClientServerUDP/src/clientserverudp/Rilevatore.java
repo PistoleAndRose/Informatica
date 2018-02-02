@@ -35,11 +35,13 @@ public class Rilevatore {
 		byte[] buffer = new byte[8];
 		//test
 		//byte[] lol=new byte[2];
-		DatagramPacket pack = new DatagramPacket(buffer, buffer.length);
+		DatagramPacket pack;
 		for (int i = 0; i < 100; i++) {
 			try {
 				refresh(macchina);
-				toByte(macchina, buffer);
+				buffer=macchina.toByte();
+				pack= new DatagramPacket(buffer, buffer.length);
+				//toByte(macchina, buffer);
 				/*test
 				*	lol[0]=0;
 				*	lol[1]=1;
@@ -69,7 +71,7 @@ public class Rilevatore {
 		macchina.ora = macchina.generaOra();
 	}
 
-	private static byte[] toByte(Auto macchina, byte[] buffer) {
+	/*private static byte[] toByte(Auto macchina, byte[] buffer) {
 		buffer[0] = (byte) macchina.latitudine;
 		buffer[1] = (byte) macchina.longitudine;
 		buffer[2] = (byte) macchina.data[0];
@@ -79,5 +81,5 @@ public class Rilevatore {
 		buffer[6] = (byte) macchina.ora[1];
 		buffer[7] = (byte) macchina.ora[2];
 		return buffer;
-	}
+	}*/
 }
