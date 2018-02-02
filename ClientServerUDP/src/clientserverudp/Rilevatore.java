@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
 
 /**
  *
@@ -82,4 +83,22 @@ public class Rilevatore {
 		buffer[7] = (byte) macchina.ora[2];
 		return buffer;
 	}*/
+	public void showPersonOverview() {
+    try {
+        // Load person overview.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Rivelatore.class.getResource("view/PersonOverview.fxml"));
+        AnchorPane personOverview = (AnchorPane) loader.load();
+
+        // Set person overview into the center of root layout.
+        rivelatoreMain.setCenter(personOverview);
+
+        // Give the controller access to the main app.
+        rivelatoreController controller = loader.getController();
+        controller.setMainApp(this);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }
